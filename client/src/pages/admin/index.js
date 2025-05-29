@@ -1,0 +1,10 @@
+export { default as AdminLayout } from "./AdminLayout.jsx";
+export { default as Dashboard } from "./Dashboard.jsx";
+export { default as CEA } from "./CEA.jsx";
+export { default as Analytics } from "./Analytics.jsx";
+export { default as ReportsVerification } from "./ReportsVerification.jsx";
+export { default as DengueMapping } from "./DengueMapping.jsx";
+export { default as Interventions } from "./Interventions.jsx";
+export { default as AllInterventions } from "./AllInterventions.jsx";
+export { default as InterventionEffectivity } from './InterventionEffectivity.jsx';
+export { default as Archives } from "./Archives.jsx";

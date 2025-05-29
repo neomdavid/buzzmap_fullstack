@@ -1,0 +1,14 @@
+export { default as About } from "./About.jsx";
+export { default as Community } from "./Community.jsx";
+export { default as Landing } from "./Landing.jsx";
+export { default as LandingLayout } from "./LandingLayout.jsx";
+export { default as Mapping } from "./Mapping.jsx";
+export { default as SpecificLocation } from "./SpecificLocation.jsx";
+export { default as SignUp } from "./SignUp.jsx";
+export { default as Login } from "./Login.jsx";
+export { default as Otp } from "./Otp.jsx";
+export { default as SingleArticle } from "./SingleArticle.jsx";
+export { default as BuzzLine } from "./BuzzLine.jsx";
+export { default as Updates } from "./Updates.jsx";
+export { default as Articles } from "./Articles.jsx";
+export { default as ForgotPassword } from "./ForgotPassword.jsx";

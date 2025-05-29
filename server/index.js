@@ -37,6 +37,10 @@ app.use(
 const connectDB = require("./db/connect");
 
 // Routes
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to BuzzMap API Server' });
+});
+
 app.use("/api/v1/auth", require("./routes/auth"));
 app.use("/api/v1/reports", require("./routes/reports"));
 app.use("/api/v1/analytics", require("./routes/analytics"));

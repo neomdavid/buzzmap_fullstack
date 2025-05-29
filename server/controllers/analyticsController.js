@@ -11,6 +11,7 @@ const {
   analyzeCrowdsourcedReports,
 } = require("../services/reportAnalysisService");
 
+console.log(process.env.PYTHON_URL);
 // Function to validate CSV content
 const validateCsvContent = (filePath) => {
   return new Promise((resolve, reject) => {
@@ -152,8 +153,10 @@ const submitCsvFile = asyncErrorHandler(async (req, res) => {
     });
 
     // Upload CSV to Python backend
+    const pythonUploadUrl = process.env.PYTHON_URL + "/api/v1/upload-csv";
+    console.log("Uploading CSV to:", pythonUploadUrl);
     const uploadResponse = await axios.post(
-      "http://localhost:8000/api/v1/upload-csv",
+      pythonUploadUrl,
       formData,
       {
         headers: {
@@ -246,9 +249,9 @@ const retrievePatternRecognitionResults = asyncErrorHandler(
 // PASSED
 const triggerDengueCaseReportAnalysis = asyncErrorHandler(async (req, res) => {
   try {
-    const response = await axios.get(
-      "http://localhost:8000/api/v1/analyze-patterns"
-    );
+    const analyzePatternsUrl = process.env.PYTHON_URL + "/api/v1/analyze-patterns";
+    console.log("Triggering pattern analysis at:", analyzePatternsUrl);
+    const response = await axios.get(analyzePatternsUrl);
 
     return res.status(200).json({
       success: true,
@@ -357,8 +360,10 @@ const retrieveTrendsAndPatterns = asyncErrorHandler(async (req, res) => {
   }
 
   try {
+    const weeklyTrendsUrl = process.env.PYTHON_URL + "/api/v1/weekly-trends";
+    console.log("Retrieving weekly trends from:", weeklyTrendsUrl);
     const response = await axios.post(
-      `http://localhost:8000/api/v1/weekly-trends`,
+      weeklyTrendsUrl,
       {
         barangay_name,
         number_of_weeks: number_of_weeks
@@ -448,8 +453,10 @@ const analyzeInterventionEffectivity = asyncErrorHandler(async (req, res) => {
     .split("T")[0];
 
   try {
+    const interventionEffectivityUrl = process.env.PYTHON_URL + "/api/v1/analyze-intervention-effectivity";
+    console.log("Analyzing intervention effectivity at:", interventionEffectivityUrl);
     const response = await axios.post(
-      "http://localhost:8000/api/v1/analyze-intervention-effectivity",
+      interventionEffectivityUrl,
       {
         barangay,
         intervention_date: formattedInterventionDate,
@@ -511,7 +518,8 @@ const getPriorityByCaseDeath = asyncErrorHandler(async (req, res) => {
     });
   }
 
-  const fastApiUrl = "http://localhost:8000/api/v1/death-priority";
+  const fastApiUrl = process.env.PYTHON_URL + "/api/v1/death-priority";
+  console.log("Getting death priority from:", fastApiUrl);
   const { data } = await axios.get(fastApiUrl);
 
   res.status(200).json({
@@ -600,8 +608,10 @@ const retrieveRecentReports = asyncErrorHandler(async (req, res) => {
   }
 
   try {
+    const recentReportsUrl = process.env.PYTHON_URL + "/api/v1/recent-reports";
+    console.log("Retrieving recent reports from:", recentReportsUrl);
     const response = await axios.get(
-      "http://localhost:8000/api/v1/recent-reports",
+      recentReportsUrl,
       {
         params: {
           barangay: barangay,
